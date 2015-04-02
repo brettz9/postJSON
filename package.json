@@ -1,13 +1,14 @@
 {
   "name": "simple-post-json",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Brett Zamir",
   "description": "Simple function module for Node or the browser to send (and retrieve) JSON via HTTP POST.",
   "keywords": [
     "json", "post"
   ],
   "dependencies": {
-    "object-assign": "2.x"
+    "object-assign": "2.x",
+    "whatwg-fetch": "0.x"
   },
   "license": "MIT",
   "main": "main.js"
