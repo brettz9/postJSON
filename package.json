@@ -1,6 +1,6 @@
 {
   "name": "simple-post-json",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Brett Zamir",
   "description": "Simple function module for Node or the browser to send (and retrieve) JSON via HTTP POST.",
   "keywords": [
