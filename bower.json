@@ -2,6 +2,7 @@
   "name": "simple-post-json",
   "version": "0.1.0",
   "main": "main.js",
+  "ignore": [],
   "authors": [
     "Brett Zamir <brettz9@yahoo.com>"
   ],
