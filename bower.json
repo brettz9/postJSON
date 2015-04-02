@@ -1,0 +1,16 @@
+{
+  "name": "simple-post-json",
+  "version": "0.1.0",
+  "main": "main.js",
+  "authors": [
+    "Brett Zamir <brettz9@yahoo.com>"
+  ],
+  "dependencies": {
+      "fetch": "0.x"
+  },
+  "description": "Simple function module for Node or the browser to send (and retrieve) JSON via HTTP POST.",
+  "keywords": [
+    "json", "post"
+  ],
+  "license": "MIT"
+}

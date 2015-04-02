@@ -1,2 +1,3 @@
 # postJSON
-Simple function module for Node or the browser to send JSON via HTTP POST.
+
+Simple function module for Node or the browser to send (and retrieve) JSON via HTTP POST.
