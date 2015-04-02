@@ -53,6 +53,11 @@ function postJSON (url, bodyObject, cb, errBack) {
 postJSON.retrieval = retrieval;
 postJSON.status = status;
 
-module.exports = postJSON;
+if (window === undefined) {
+    module.exports = postJSON;
+}
+else {
+    window.postJSON = postJSON;
+}
 
 }());
