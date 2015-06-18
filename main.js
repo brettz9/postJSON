@@ -1,11 +1,7 @@
 /*global require, module*/
 /*jslint vars:true */
-var fetch, window;
-if (window === undefined) {
-    fetch = require('fetch');
-    Object.assign = require('object-assign');
-}
 
+var fetch, window;
 (function () {'use strict';
 
 function status (response) {
@@ -34,14 +30,14 @@ function postJSON (url, bodyObject, cb, errBack) {
         // Properties only available via this object argument API
         statusCb = url.status || status;
         retrievalCb = url.retrieval || retrieval;
-        dataObject.headers = Object.assign(dataObject.headers, url.headers);
+        dataObject.headers = postJSON.objectAssign(dataObject.headers, url.headers);
 
         url = url.url;
     }
     if (bodyObject) {
         dataObject.body = JSON.stringify(bodyObject);
     }
-    var ret = fetch(url, dataObject).then(statusCb).then(retrievalCb);
+    var ret = (fetch || postJSON.fetch)(url, dataObject).then(statusCb).then(retrievalCb);
     if (cb) {
         ret = ret.then(cb);
     }
@@ -52,6 +48,7 @@ function postJSON (url, bodyObject, cb, errBack) {
 }
 postJSON.retrieval = retrieval;
 postJSON.status = status;
+postJSON.objectAssign = Object.assign; // Give opportunity for Node to supply its own without adding a require which System.js will not find for browser
 
 if (window === undefined) {
     module.exports = postJSON;
