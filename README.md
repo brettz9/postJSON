@@ -51,3 +51,7 @@ function retrieval (response) {
     return response.json();
 }
 ```
+
+# Notes
+
+See also [getJSON](https://github.com/brettz9/getJSON).
