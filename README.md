@@ -19,7 +19,7 @@ postJSON(url, bodyObject, callback, errBack);
 ...or...
 
 ```js
-postJSON({url: url, body: bodyObject, callback: callback, errBack: errBack, headers: headers, status: statusCallback, retrieval: retrievalCallback);
+postJSON({url: url, body: bodyObject, callback: callback, errBack: errBack, headers: headers, credentials: credentials, status: statusCallback, retrieval: retrievalCallback);
 ```
 
 Only the `url` argument is required.
@@ -32,6 +32,8 @@ The `headers` object defaults to:
     'Content-Type': 'application/json'
 }
 ```
+
+The `credentials` string defaults to "same-origin". Other allowable values are "omit" and "include".
 
 The `status` argument defaults to the following function (available as `postJSON.status`):
 

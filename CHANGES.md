@@ -1,3 +1,6 @@
+# 0.2.0
+- Support sending credentials (same-origin by default)
+
 # 0.1.4
 - Add separate node-main file to allow shimming which won't cause problems when Bower-installed and loaded with System.js in browser
 

@@ -21,7 +21,7 @@ function postJSON (url, bodyObject, cb, errBack) {
             'Content-Type': 'application/json'
         }
     };
-    var statusCb = status, retrievalCb = retrieval;
+    var credentials = 'same-origin', statusCb = status, retrievalCb = retrieval;
     if (url && typeof url === 'object') {
         bodyObject = url.body || bodyObject;
         cb = url.callback || cb;
@@ -30,6 +30,7 @@ function postJSON (url, bodyObject, cb, errBack) {
         // Properties only available via this object argument API
         statusCb = url.status || status;
         retrievalCb = url.retrieval || retrieval;
+        credentials = url.credentials || credentials; // "omit" (default), "same-origin", "include"
         dataObject.headers = postJSON.objectAssign(dataObject.headers, url.headers);
 
         url = url.url;
@@ -37,6 +38,7 @@ function postJSON (url, bodyObject, cb, errBack) {
     if (bodyObject) {
         dataObject.body = JSON.stringify(bodyObject);
     }
+    dataObject.credentials = credentials;
     var ret = (fetch || postJSON.fetch)(url, dataObject).then(statusCb).then(retrievalCb);
     if (cb) {
         ret = ret.then(cb);
