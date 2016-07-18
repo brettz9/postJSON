@@ -1,6 +1,7 @@
 # postJSON
 
-Simple function module for Node or the browser to send (and retrieve) JSON via HTTP POST.
+Simple function module for Node or the browser to send (and retrieve)
+JSON via HTTP POST.
 
 # Installation
 
@@ -19,7 +20,16 @@ postJSON(url, bodyObject, callback, errBack);
 ...or...
 
 ```js
-postJSON({url: url, body: bodyObject, callback: callback, errBack: errBack, headers: headers, credentials: credentials, status: statusCallback, retrieval: retrievalCallback);
+postJSON({
+    url: url, // Only required argument
+    body: bodyObject,
+    callback: callback,
+    errBack: errBack,
+    headers: headers,
+    credentials: credentials,
+    status: statusCallback,
+    retrieval: retrievalCallback
+});
 ```
 
 Only the `url` argument is required.
@@ -33,9 +43,11 @@ The `headers` object defaults to:
 }
 ```
 
-The `credentials` string defaults to "same-origin". Other allowable values are "omit" and "include".
+The `credentials` string defaults to "same-origin". Other allowable values
+are "omit" and "include".
 
-The `status` argument defaults to the following function (available as `postJSON.status`):
+The `status` argument defaults to the following function (available as
+`postJSON.status`):
 
 ```js
 function status (response) {
@@ -46,13 +58,20 @@ function status (response) {
 }
 ```
 
-The `retrieval` argument defaults to the following function (available as `postJSON.retrieval`):
+The `retrieval` argument defaults to the following function (available as
+`postJSON.retrieval`):
 
 ```js
 function retrieval (response) {
     return response.json();
 }
 ```
+
+And if the global `fetch` is not available, `postJSON.fetch` will be checked.
+This value is auto-supplied for Node (as ["whatwg-fetch"](https://github.com/github/fetch)),
+and if you need `fetch` in the browser, e.g., for Safari, you can include a
+script to the polyfill (including by default with bower installation under
+`bower_components/fetch/fetch.js`).
 
 # Notes
 
