@@ -73,6 +73,9 @@ and if you need `fetch` in the browser, e.g., for Safari, you can include a
 script to the polyfill (including by default with bower installation under
 `bower_components/fetch/fetch.js`).
 
+Similarly, if `Object.assign` is not available, `postJSON.objectAssign` will
+be checked. This value is auto-supplied for Node (as ["object-assign"](https://github.com/sindresorhus/object-assign)).
+
 # Notes
 
 See also [getJSON](https://github.com/brettz9/getJSON).
