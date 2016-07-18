@@ -4,15 +4,19 @@
   "author": {
     "name": "Brett Zamir"
   },
+  "contributors": [],
   "description": "Simple function module for Node or the browser to send (and retrieve) JSON via HTTP POST.",
   "keywords": [
     "json",
     "post"
   ],
+  "bugs": "https://github.com/brettz9/postJSON/issues",
   "dependencies": {
     "object-assign": "2.x",
     "whatwg-fetch": "0.x"
   },
+  "homepage": "https://github.com/brettz9/postJSON",
+  "engines": {"node" : ">=0.10.3"},
   "repository": {
     "type": "git",
     "url": "https://github.com/brettz9/postJSON.git"
