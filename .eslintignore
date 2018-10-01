@@ -1,0 +1,4 @@
+node_modules
+dist
+test/index-cjs.js
+test/index-umd.js

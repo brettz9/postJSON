@@ -1,5 +1,12 @@
 # postJSON
 
+[![Dependencies](https://img.shields.io/david/brettz9/postJSON.svg)](https://david-dm.org/brettz9/postJSON)
+[![devDependencies](https://img.shields.io/david/dev/brettz9/postJSON.svg)](https://david-dm.org/brettz9/postJSON?type=dev)
+[![npm](https://img.shields.io/npm/v/simple-post-json.svg)](https://www.npmjs.com/package/simple-post-json)
+[![License](https://img.shields.io/npm/l/simple-post-json.svg)](LICENSE-MIT)
+[![Code Quality: Javascript](https://img.shields.io/lgtm/grade/javascript/g/brettz9/postJSON.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/brettz9/postJSON/context:javascript)
+[![Total Alerts](https://img.shields.io/lgtm/alerts/g/brettz9/postJSON.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/brettz9/postJSON/alerts)
+
 Simple function module for Node or the browser to send (and retrieve)
 JSON via HTTP POST.
 
@@ -7,20 +14,16 @@ JSON via HTTP POST.
 
 `npm install simple-post-json`
 
-...or:
-
-`bower install simple-post-json`
-
 # API
 
 ```js
-postJSON(url, bodyObject, callback, errBack);
+const json = await postJSON(url, bodyObject, callback, errBack);
 ```
 
 ...or...
 
 ```js
-postJSON({
+const json = await postJSON({
     url: url, // Only required argument
     body: bodyObject,
     callback: callback,
@@ -59,7 +62,7 @@ function status (response) {
 ```
 
 The `retrieval` argument defaults to the following function (available as
-`postJSON.retrieval`):
+`postJSON.retrieval`), which is what `postJSON` will resolve to:
 
 ```js
 function retrieval (response) {
@@ -70,11 +73,7 @@ function retrieval (response) {
 And if the global `fetch` is not available, `postJSON.fetch` will be checked.
 This value is auto-supplied for Node (as ["whatwg-fetch"](https://github.com/github/fetch)),
 and if you need `fetch` in the browser, e.g., for Safari, you can include a
-script to the polyfill (including by default with bower installation under
-`bower_components/fetch/fetch.js`).
-
-Similarly, if `Object.assign` is not available, `postJSON.objectAssign` will
-be checked. This value is auto-supplied for Node (as ["object-assign"](https://github.com/sindresorhus/object-assign)).
+script to the polyfill.
 
 # Notes
 

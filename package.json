@@ -4,23 +4,54 @@
   "author": {
     "name": "Brett Zamir"
   },
+  "main": "dist/index-cjs.js",
+  "module": "dist/index-es.js",
   "contributors": [],
   "description": "Simple function module for Node or the browser to send (and retrieve) JSON via HTTP POST.",
+  "scripts": {
+    "eslint": "eslint .",
+    "rollup": "rollup -c",
+    "start": "echo \"Open file to http://localhost:8008/test/\" && static -p 8008",
+    "browser-test": "npm run eslint && npm run rollup && opn http://localhost:8008/test/ && static -p 8008",
+    "test": "node -e 'require(\"./test/index-cjs.js\")'"
+  },
   "keywords": [
     "json",
     "post"
   ],
   "bugs": "https://github.com/brettz9/postJSON/issues",
   "dependencies": {
-    "object-assign": "2.x",
-    "whatwg-fetch": "0.x"
+    "cross-fetch": "^2.2.2",
+    "encoding": "^0.1.12"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "eslint": "5.6.1",
+    "eslint-config-standard": "12.0.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-node": "7.0.1",
+    "eslint-plugin-promise": "4.0.1",
+    "eslint-plugin-qunit": "^4.0.0",
+    "eslint-plugin-standard": "4.0.0",
+    "node-static": "^0.7.11",
+    "opn-cli": "^3.1.0",
+    "rollup": "0.66.2",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.1.8",
+    "rollup-plugin-json": "^3.1.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-terser": "^3.0.0",
+    "tressa": "https://github.com/brettz9/tressa#reporter"
   },
   "homepage": "https://github.com/brettz9/postJSON",
-  "engines": {"node" : ">=0.10.3"},
+  "engines": {
+    "node": ">=4.9.1"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/brettz9/postJSON.git"
   },
-  "license": "MIT",
-  "main": "node-main"
+  "license": "MIT"
 }
