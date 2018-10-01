@@ -943,7 +943,7 @@
       retrievalCb = url.retrieval || retrieval;
       credentials = url.credentials || credentials; // "omit" (default), "same-origin", "include"
 
-      dataObject.headers = postJSON.objectAssign(dataObject.headers, url.headers);
+      dataObject.headers = Object.assign(dataObject.headers, url.headers);
       url = url.url;
     }
 
@@ -976,7 +976,7 @@
   }
 
   describe('postJSON', function () {
-    it('Can post JSON',
+    it('Can post JSON and receive a that JSON back within a larger JSON object',
     /*#__PURE__*/
     _asyncToGenerator(
     /*#__PURE__*/
@@ -987,13 +987,20 @@
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return postJSON('http://localhost:8008/test/sample.json');
+              return postJSON({
+                url: 'http://localhost:8090/',
+                body: {
+                  test: 1
+                },
+                credentials: 'omit'
+              });
 
             case 2:
               json = _context.sent;
               assert(json && _typeof(json) === 'object', 'Returns an object');
+              assert(json && json.reply && json.reply.test === 1, 'Receives response back');
 
-            case 4:
+            case 5:
             case "end":
               return _context.stop();
           }

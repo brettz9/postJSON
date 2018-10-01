@@ -52,7 +52,7 @@
       retrievalCb = url.retrieval || retrieval;
       credentials = url.credentials || credentials; // "omit" (default), "same-origin", "include"
 
-      dataObject.headers = postJSON.objectAssign(dataObject.headers, url.headers);
+      dataObject.headers = Object.assign(dataObject.headers, url.headers);
       url = url.url;
     }
 

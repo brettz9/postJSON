@@ -1,6 +1,6 @@
 {
   "name": "simple-post-json",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": {
     "name": "Brett Zamir"
   },
@@ -11,9 +11,10 @@
   "scripts": {
     "eslint": "eslint .",
     "rollup": "rollup -c",
-    "start": "echo \"Open file to http://localhost:8008/test/\" && static -p 8008",
-    "browser-test": "npm run eslint && npm run rollup && opn http://localhost:8008/test/ && static -p 8008",
-    "test": "node -e 'require(\"./test/index-cjs.js\")'"
+    "start-json-server": "node test/server",
+    "start": "echo \"Open file to http://localhost:8008/test/\" && static -p 8008 | npm run start-json-server",
+    "browser-test": "npm run eslint && npm run rollup && static -p 8008 | npm run start-json-server | opn http://localhost:8008/test/",
+    "test": "npm run start-json-server | { sleep 1; node './test/index-cjs.js' ; kill $(ps aux | grep '[n]ode test/server' | awk '{print $2}') ; }"
   },
   "keywords": [
     "json",

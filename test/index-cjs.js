@@ -2280,7 +2280,7 @@ function postJSON (url$$1, bodyObject, cb, errBack) {
     statusCb = url$$1.status || status;
     retrievalCb = url$$1.retrieval || retrieval;
     credentials = url$$1.credentials || credentials; // "omit" (default), "same-origin", "include"
-    dataObject.headers = postJSON.objectAssign(dataObject.headers, url$$1.headers);
+    dataObject.headers = Object.assign(dataObject.headers, url$$1.headers);
 
     url$$1 = url$$1.url;
   }
@@ -2311,8 +2311,15 @@ if (typeof document !== 'undefined') {
 }
 
 describe('postJSON', function () {
-  it('Can post JSON', async function () {
-    const json = await indexCjs('http://localhost:8008/test/sample.json');
+  it('Can post JSON and receive a that JSON back within a larger JSON object', async function () {
+    const json = await indexCjs({
+      url: 'http://localhost:8090/',
+      body: {
+        test: 1
+      },
+      credentials: 'omit'
+    });
     assert(json && typeof json === 'object', 'Returns an object');
+    assert(json && json.reply && json.reply.test === 1, 'Receives response back');
   });
 });

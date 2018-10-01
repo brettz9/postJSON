@@ -7,9 +7,15 @@ if (typeof document !== 'undefined') {
 }
 
 describe('postJSON', function () {
-  // Todo: We need to replace this with a dynamic app and test that what is posted is utilized
-  it('Can post JSON', async function () {
-    const json = await postJSON('http://localhost:8008/test/sample.json');
+  it('Can post JSON and receive a that JSON back within a larger JSON object', async function () {
+    const json = await postJSON({
+      url: 'http://localhost:8090/',
+      body: {
+        test: 1
+      },
+      credentials: 'omit'
+    });
     assert(json && typeof json === 'object', 'Returns an object');
+    assert(json && json.reply && json.reply.test === 1, 'Receives response back');
   });
 });

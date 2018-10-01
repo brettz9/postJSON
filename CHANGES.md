@@ -1,3 +1,9 @@
+# 0.3.1
+
+- Fix: `Object.assign` needed for object signature
+- Docs: Reorder arguments semantically
+- Testing: Switch test to actually receive a dynamic JSON reply (and based on user-supplied info)
+
 # 0.3.0
 
 - Breaking change: Move source and provide `dist` files (including ESM)
