@@ -9,6 +9,8 @@
 - Linting (LGTM): Add `lgtm.yml`
 - License: Reflect license type (MIT) in name
 - Docs: Show npm info and LGTM info in README; show return result of resolved promise
+- Testing: Add simple test
+- Update: Use `cross-fetch`
 - npm: Add eslint, rollup, and test scripts; ignore file
 
 # 0.2.0
