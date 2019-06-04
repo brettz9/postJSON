@@ -1,6 +1,6 @@
 {
   "name": "simple-post-json",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "author": {
     "name": "Brett Zamir"
   },
@@ -13,8 +13,8 @@
     "rollup": "rollup -c",
     "start-json-server": "node test/server",
     "start": "echo \"Open file to http://localhost:8008/test/\" && static -p 8008 | npm run start-json-server",
-    "browser-test": "npm run eslint && npm run rollup && static -p 8008 | npm run start-json-server | opn http://localhost:8008/test/",
-    "test": "npm run start-json-server | { sleep 1; node './test/index-cjs.js' ; kill $(ps aux | grep '[n]ode test/server' | awk '{print $2}') ; }"
+    "browser-test": "npm run eslint && npm run rollup && static -p 8008 | npm run start-json-server | open-cli http://localhost:8008/test/",
+    "test": "npm run start-json-server | { sleep 1; mocha -r esm -r './test/node-env.js' './test/index.js' ; kill $(ps aux | grep '[n]ode test/server' | awk '{print $2}') ; }"
   },
   "keywords": [
     "json",
@@ -22,33 +22,44 @@
   ],
   "bugs": "https://github.com/brettz9/postJSON/issues",
   "dependencies": {
-    "cross-fetch": "^2.2.2",
+    "core-js-bundle": "^3.1.3",
+    "cross-fetch": "^3.0.3",
     "encoding": "^0.1.12"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "@babel/polyfill": "^7.0.0",
-    "@babel/preset-env": "^7.1.0",
-    "eslint": "5.6.1",
-    "eslint-config-standard": "12.0.0",
-    "eslint-plugin-import": "2.14.0",
-    "eslint-plugin-node": "7.0.1",
-    "eslint-plugin-promise": "4.0.1",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@mysticatea/eslint-plugin": "^10.0.3",
+    "chai": "^4.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-ash-nazg": "^6.1.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-compat": "^3.1.1",
+    "eslint-plugin-eslint-comments": "^3.1.1",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jsdoc": "^7.2.3",
+    "eslint-plugin-markdown": "^1.0.0",
+    "eslint-plugin-no-use-extend-native": "^0.4.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-qunit": "^4.0.0",
-    "eslint-plugin-standard": "4.0.0",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-unicorn": "^9.0.0",
+    "esm": "^3.2.25",
+    "mocha": "^6.1.4",
     "node-static": "^0.7.11",
-    "opn-cli": "^3.1.0",
-    "rollup": "0.66.2",
-    "rollup-plugin-babel": "^4.0.3",
-    "rollup-plugin-commonjs": "^9.1.8",
-    "rollup-plugin-json": "^3.1.0",
-    "rollup-plugin-node-resolve": "^3.4.0",
-    "rollup-plugin-terser": "^3.0.0",
-    "tressa": "https://github.com/brettz9/tressa#reporter"
+    "open-cli": "^5.0.0",
+    "rollup": "1.14.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^10.0.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.0.1",
+    "rollup-plugin-terser": "^5.0.0",
+    "typescript": "^3.5.1"
   },
   "homepage": "https://github.com/brettz9/postJSON",
   "engines": {
-    "node": ">=4.9.1"
+    "node": ">=8.0.0"
   },
   "repository": {
     "type": "git",

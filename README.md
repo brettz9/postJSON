@@ -27,11 +27,11 @@ const json = await postJSON({
     url: url, // Only required argument
     body: bodyObject, // JSON object
 
-    headers: headers, // `fetch` headers subobject: https://developer.mozilla.org/en-US/docs/Web/API/Headers/Headers
-    credentials: credentials, // `fetch` credentials: "omit", "same-origin", or "include"
+    headers, // `fetch` headers subobject: https://developer.mozilla.org/en-US/docs/Web/API/Headers/Headers
+    credentials, // `fetch` credentials: "omit", "same-origin", or "include"
 
-    callback: callback, // No need if using the promise `then` result
-    errBack: errBack, // No need if catching errors in the promise
+    callback, // No need if using the promise `then` result
+    errBack, // No need if catching errors in the promise
     status: statusCallback, // See below
     retrieval: retrievalCallback // See below
 });

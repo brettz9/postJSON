@@ -3,6 +3,18 @@ import {terser} from 'rollup-plugin-terser';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 
+/**
+ * @external RollupConfig
+ * @type {PlainObject}
+ * @see {@link https://rollupjs.org/guide/en#big-list-of-options}
+ */
+
+/**
+ * @param {PlainObject} config
+ * @param {boolean} config.minifying
+ * @param {string} [config.format='umd'} = {}]
+ * @returns {external:RollupConfig}
+ */
 function getRollupObject ({minifying, format = 'umd'} = {}) {
   const isCJS = format === 'cjs';
   const srcFile = 'index' + (isCJS ? '-cjs' : '');
@@ -15,9 +27,7 @@ function getRollupObject ({minifying, format = 'umd'} = {}) {
       banner: isCJS ? 'global.self = global;' : '',
       name: 'postJSON'
     },
-    plugins: [
-      isCJS ? commonjs() : babel()
-    ]
+    plugins: isCJS ? [resolve(), commonjs()] : [babel()]
   };
   if (isCJS) {
     nonMinified.external = ['cross-fetch', 'encoding'];
@@ -31,6 +41,7 @@ function getRollupObject ({minifying, format = 'umd'} = {}) {
 // For debugging
 // getRollupObject; // eslint-disable-line no-unused-expressions
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default [
   // The first four are for those not using our HTML (though
   //    not currently recommended)
@@ -39,34 +50,5 @@ export default [
   getRollupObject({minifying: true, format: 'umd'}),
   getRollupObject({minifying: true, format: 'es'}),
   getRollupObject({minifying: false, format: 'es'}),
-  getRollupObject({minifying: false, format: 'cjs'}),
-  {
-    input: `test/index.js`,
-    output: {
-      format: 'cjs',
-      file: `test/index-cjs.js`,
-      banner: 'global.self = global;'
-    },
-    plugins: [
-      resolve({
-        main: true,
-        module: false
-      }),
-      commonjs()
-    ],
-    external: ['url', 'http', 'https', 'zlib', 'encoding', 'stream']
-  },
-  {
-    input: `test/index.js`,
-    output: {
-      format: 'umd',
-      file: `test/index-umd.js`
-    },
-    plugins: [
-      resolve({
-        module: true
-      }),
-      babel()
-    ]
-  }
+  getRollupObject({minifying: false, format: 'cjs'})
 ];

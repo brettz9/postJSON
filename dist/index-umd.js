@@ -1,8 +1,8 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.postJSON = factory());
-}(this, (function () { 'use strict';
+  (global = global || self, global.postJSON = factory());
+}(this, function () { 'use strict';
 
   function _typeof(obj) {
     if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
@@ -19,17 +19,90 @@
   }
 
   /* eslint-env browser */
-  function status(response) {
+
+  /* eslint-disable promise/prefer-await-to-then,
+      promise/no-callback-in-promise */
+
+  /**
+   * @callback StatusHandler
+   * @param {Response} response
+   * @returns {Promise<Response>}
+   */
+
+  /**
+   * @function statusOK
+   * @param {Response} response
+   * @type {StatusHandler}
+   * @returns {Promise<Response>}
+   */
+  function statusOK(response) {
     if (response.status >= 200 && response.status < 300) {
       return Promise.resolve(response);
     }
 
     return Promise.reject(new Error(response.statusText));
   }
+  /**
+   * @callback RetrievalHandler
+   * @param {Response} response
+   * @returns {Any|Promise<Any>} The return will be what is returned by
+   *  `postJSON` unless it also has a {@link PostJSONCallback} callback.
+   */
 
-  function retrieval(response) {
+  /**
+   * @function retrievalJSON
+   * @param {Response} response
+   * @type {RetrievalHandler}
+   * @returns {JSON}
+   */
+
+
+  function retrievalJSON(response) {
     return response.json();
   }
+  /**
+   * The keys are header names and the values their values.
+   * @typedef {PlainObject<string, string>} Headers
+  */
+
+  /**
+  * @callback PostJSONErrback
+  * @param {Error} Any error caught during `fetch`, {@link StatusHandler},
+  *   {@link RetrievalHandler}, or, if present, {@link PostJSONCallback}.
+  * @returns {Any} Its return will serve as the return of `postJSON` in the
+  *   event of it catching an error.
+  */
+
+  /**
+  * @callback PostJSONCallback
+  * @param {Any} result The result of `postJSON`'s {@link RetrievalHandler} (by
+  *   default {@link retrievalJSON})
+  * @returns {Any|Promise<Any>} Any promise will feed into `errBack` if present.
+  *   This value will serve as the `postJSON` return result.
+  */
+
+  /**
+  * @typedef {PlainObject} PostJSONOptions
+  * @property {JSON} [body]
+  * @property {PostJSONCallback} [callback]
+  * @property {PostJSONErrback} [errBack]
+  * @property {StatusHandler} [status=statusOK]
+  * @property {RetrievalHandler} [retrieval=retrievalJSON]
+  * @property {"omit"|"same-origin"|"include"} [credentials="same-origin"]
+  *   "omit" is `fetch` default
+  * @property {Headers} [headers={"Accept": "application/json",
+  "Content-Type": "application/json"}]
+  */
+
+  /**
+   *
+   * @param {string|PostJSONOptions} [url]
+   * @param {JSON} [bodyObject] Will be overridden by `url.body` if present
+   * @param {PostJSONCallback} [cb]
+   * @param {PostJSONErrback} [errBack]
+   * @returns {Promise<Any>}
+   */
+
 
   function postJSON(url, bodyObject, cb, errBack) {
     var dataObject = {
@@ -40,20 +113,20 @@
       }
     };
     var credentials = 'same-origin',
-        statusCb = status,
-        retrievalCb = retrieval;
+        statusCb = statusOK,
+        retrievalCb = retrievalJSON;
 
     if (url && _typeof(url) === 'object') {
       bodyObject = url.body || bodyObject;
       cb = url.callback || cb;
       errBack = url.errBack || errBack; // Properties only available via this object argument API
 
-      statusCb = url.status || status;
-      retrievalCb = url.retrieval || retrieval;
-      credentials = url.credentials || credentials; // "omit" (default), "same-origin", "include"
-
+      statusCb = url.status || statusOK;
+      retrievalCb = url.retrieval || retrievalJSON;
+      credentials = url.credentials || credentials;
       dataObject.headers = Object.assign(dataObject.headers, url.headers);
-      url = url.url;
+      var _url = url;
+      url = _url.url;
     }
 
     if (bodyObject) {
@@ -68,15 +141,15 @@
     }
 
     if (errBack) {
-      ret = ret.catch(errBack);
+      ret = ret["catch"](errBack);
     }
 
     return ret;
   }
 
-  postJSON.retrieval = retrieval;
-  postJSON.status = status;
+  postJSON.retrieval = retrievalJSON;
+  postJSON.status = statusOK;
 
   return postJSON;
 
-})));
+}));

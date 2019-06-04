@@ -1,7 +1,7 @@
 /* eslint-env node */
+import crossFetch from 'cross-fetch';
 import postJSON from './index.js';
-import fetch from 'cross-fetch';
 
-postJSON.fetch = fetch;
+postJSON.fetch = crossFetch;
 
 export default postJSON;
