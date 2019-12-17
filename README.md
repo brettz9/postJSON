@@ -17,34 +17,38 @@ JSON via HTTP POST.
 # API
 
 ```js
+(async () => {
 const json = await postJSON(url, bodyObject, callback, errBack);
+})();
 ```
 
 ...or...
 
 ```js
+(async () => {
 const json = await postJSON({
-    url: url, // Only required argument
-    body: bodyObject, // JSON object
+  url, // Only required argument
+  body: bodyObject, // JSON object
 
-    headers, // `fetch` headers subobject: https://developer.mozilla.org/en-US/docs/Web/API/Headers/Headers
-    credentials, // `fetch` credentials: "omit", "same-origin", or "include"
+  headers, // `fetch` headers subobject: https://developer.mozilla.org/en-US/docs/Web/API/Headers/Headers
+  credentials, // `fetch` credentials: "omit", "same-origin", or "include"
 
-    callback, // No need if using the promise `then` result
-    errBack, // No need if catching errors in the promise
-    status: statusCallback, // See below
-    retrieval: retrievalCallback // See below
+  callback, // No need if using the promise `then` result
+  errBack, // No need if catching errors in the promise
+  status: statusCallback, // See below
+  retrieval: retrievalCallback // See below
 });
+})();
 ```
 
 Only the `url` argument is required.
 
 The `headers` object defaults to:
 
-```js
+```json
 {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
+  "Accept": "application/json",
+  "Content-Type": "application/json"
 }
 ```
 
@@ -56,10 +60,10 @@ The `status` argument defaults to the following function (available as
 
 ```js
 function status (response) {
-    if (response.status >= 200 && response.status < 300) {
-        return Promise.resolve(response);
-    }
-    return Promise.reject(new Error(response.statusText));
+  if (response.status >= 200 && response.status < 300) {
+    return Promise.resolve(response);
+  }
+  return Promise.reject(new Error(response.statusText));
 }
 ```
 
@@ -68,7 +72,7 @@ The `retrieval` argument defaults to the following function (available as
 
 ```js
 function retrieval (response) {
-    return response.json();
+  return response.json();
 }
 ```
 

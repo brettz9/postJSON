@@ -15,6 +15,7 @@
     <div id="mocha"></div>
 
     <script type="module">
+    /* globals mocha, chai */
     import '../node_modules/core-js-bundle/minified.js';
     // import '../node_modules/regenerator-runtime/runtime.js';
     import postJSON from '../dist/index-es.js';
@@ -28,6 +29,7 @@
     <script type="module" src="index.js"></script>
 
     <script type="module">
+    /* globals mocha */
     mocha.run();
     </script>
   </body>

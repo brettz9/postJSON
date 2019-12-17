@@ -17,6 +17,31 @@ module.exports = {
   },
   "overrides": [
     {
+      files: '*.html',
+      rules: {
+        'import/unambiguous': 0
+      }
+    },
+    {
+      files: '*.md',
+      globals: {
+        postJSON: true,
+        url: true,
+        bodyObject: true,
+        callback: true,
+        errBack: true,
+        headers: true,
+        credentials: true,
+        statusCallback: true,
+        retrievalCallback: true,
+      },
+      rules: {
+        'import/unambiguous': 0,
+        'jsdoc/require-jsdoc': 0,
+        'no-unused-vars': ['error', {varsIgnorePattern: 'json|status|retrieval'}]
+      }
+    },
+    {
       "files": ["test/index.js"],
       globals: {
         assert: "readonly",

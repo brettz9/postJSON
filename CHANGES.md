@@ -1,5 +1,11 @@
 # CHANGES for postJSON
 
+## 0.5.0
+
+- Linting: Lint Markdown and HTML; update per latest ash-nazg
+- Maintenance: Add `.editorconfig`
+- npm: Update deps. and devDeps.; add devDeps for ash-nazg
+
 ## 0.4.0
 
 - Breaking change: Replace deprecated `@babel/polyfill` and add

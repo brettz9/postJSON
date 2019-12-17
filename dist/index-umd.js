@@ -2,7 +2,7 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.postJSON = factory());
-}(this, function () { 'use strict';
+}(this, (function () { 'use strict';
 
   function _typeof(obj) {
     if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
@@ -45,7 +45,7 @@
   /**
    * @callback RetrievalHandler
    * @param {Response} response
-   * @returns {Any|Promise<Any>} The return will be what is returned by
+   * @returns {any|Promise<any>} The return will be what is returned by
    *  `postJSON` unless it also has a {@link PostJSONCallback} callback.
    */
 
@@ -69,15 +69,15 @@
   * @callback PostJSONErrback
   * @param {Error} Any error caught during `fetch`, {@link StatusHandler},
   *   {@link RetrievalHandler}, or, if present, {@link PostJSONCallback}.
-  * @returns {Any} Its return will serve as the return of `postJSON` in the
+  * @returns {any} Its return will serve as the return of `postJSON` in the
   *   event of it catching an error.
   */
 
   /**
   * @callback PostJSONCallback
-  * @param {Any} result The result of `postJSON`'s {@link RetrievalHandler} (by
+  * @param {any} result The result of `postJSON`'s {@link RetrievalHandler} (by
   *   default {@link retrievalJSON})
-  * @returns {Any|Promise<Any>} Any promise will feed into `errBack` if present.
+  * @returns {any|Promise<any>} Any promise will feed into `errBack` if present.
   *   This value will serve as the `postJSON` return result.
   */
 
@@ -100,7 +100,7 @@
    * @param {JSON} [bodyObject] Will be overridden by `url.body` if present
    * @param {PostJSONCallback} [cb]
    * @param {PostJSONErrback} [errBack]
-   * @returns {Promise<Any>}
+   * @returns {Promise<any>}
    */
 
 
@@ -152,4 +152,4 @@
 
   return postJSON;
 
-}));
+})));
