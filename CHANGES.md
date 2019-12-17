@@ -1,5 +1,9 @@
 # CHANGES for postJSON
 
+## ?
+
+- npm: Switch to non-deprecated `@rollup/plugin-node-resolve`
+
 ## 0.5.0
 
 - Linting: Lint Markdown and HTML; update per latest ash-nazg
