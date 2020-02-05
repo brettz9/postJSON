@@ -1,8 +1,10 @@
 # CHANGES for postJSON
 
-## ?
+## 0.6.0
 
+- Breaking change: Change core-js-bundle to a peerDep.
 - npm: Switch to non-deprecated `@rollup/plugin-node-resolve`
+- npm: Update core-js-bundle, devDeps
 
 ## 0.5.0
 
