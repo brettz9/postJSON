@@ -1,4 +1,4 @@
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
 import {terser} from 'rollup-plugin-terser';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
@@ -27,7 +27,11 @@ function getRollupObject ({minifying, format = 'umd'} = {}) {
       banner: isCJS ? 'global.self = global;' : '',
       name: 'postJSON'
     },
-    plugins: isCJS ? [resolve(), commonjs()] : [babel()]
+    plugins: isCJS
+      ? [resolve(), commonjs()]
+      : [babel({
+        babelHelpers: 'bundled'
+      })]
   };
   if (isCJS) {
     nonMinified.external = ['cross-fetch', 'encoding'];

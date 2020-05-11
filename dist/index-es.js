@@ -129,7 +129,8 @@ function postJSON(url, bodyObject, cb, errBack) {
     dataObject.body = JSON.stringify(bodyObject);
   }
 
-  dataObject.credentials = credentials;
+  dataObject.credentials = credentials; // istanbul ignore next
+
   var ret = (typeof fetch !== 'undefined' ? fetch : postJSON.fetch)(url, dataObject).then(statusCb).then(retrievalCb);
 
   if (cb) {

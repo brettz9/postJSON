@@ -5,6 +5,10 @@
 const http = require('http');
 
 http.createServer(function (req, res) {
+  if (req.url === '/internal-error') {
+    res.writeHead(500).end('');
+    return;
+  }
   if (req.url === '/') {
     let body = '';
     req.on('data', (chunk) => {
