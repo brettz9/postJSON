@@ -8,7 +8,7 @@
 - Testing: Check non-object signature, no credentials, object signature
    with separate body, check callbacks and errBack, missing body, bad
    server path, non-200 error code; brings coverage to 100%
-- Testing: Add nyc for coverage and use chai/register-assert
+- Testing: Add nyc for coverage and use `chai/register-assert`
 - npm: Indicate in CLI for the browser test the URL that is to be opened
 - npm: Update `rollup-plugin-babel` to `@rollup/plugin-babel`
     and make explicit `babelHelpers` value of `bundled`
