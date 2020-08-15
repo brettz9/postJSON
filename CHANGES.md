@@ -1,6 +1,6 @@
 # CHANGES for postJSON
 
-## ?
+## 0.7.0
 
 - Build: Use "json" extension for Babel RC
 - Build: Update as per latest linting/devDeps
