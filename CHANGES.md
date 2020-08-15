@@ -2,7 +2,8 @@
 
 ## ?
 
-- Build: Use "json" extension for RC
+- Build: Use "json" extension for Babel RC
+- Build: Update as per latest linting/devDeps
 - Linting (ESLint): As per latest ash-nazg / ESLint 7
 - Testing: Check non-object signature, no credentials, object signature
    with separate body, check callbacks and errBack, missing body, bad
@@ -11,13 +12,16 @@
 - npm: Indicate in CLI for the browser test the URL that is to be opened
 - npm: Update `rollup-plugin-babel` to `@rollup/plugin-babel`
     and make explicit `babelHelpers` value of `bundled`
-- npm: Update devDeps. and peerDeps. (core-js-bundle)
+- npm: Change to non-deprecated `@rollup/plugin-commonjs`
+- npm: Remove unused (and deprecated) `rollup-plugin-json`
+- npm: Update deps. (`cross-fetch`, `encoding`)
+- npm: Update devDeps. and peerDeps. (`core-js-bundle`)
 
 ## 0.6.0
 
-- Breaking change: Change core-js-bundle to a peerDep.
+- Breaking change: Change `core-js-bundle` to a peerDep.
 - npm: Switch to non-deprecated `@rollup/plugin-node-resolve`
-- npm: Update core-js-bundle, devDeps
+- npm: Update `core-js-bundle`, devDeps
 
 ## 0.5.0
 

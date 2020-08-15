@@ -67,6 +67,9 @@ module.exports = {
     }
   ],
   rules: {
-    indent: ['error', 2, {outerIIFEBody: 0}]
+    indent: ['error', 2, {outerIIFEBody: 0}],
+
+    // Disable for now
+    'eslint-comments/require-description': 0
   }
 };

@@ -1,7 +1,7 @@
 import babel from '@rollup/plugin-babel';
 import {terser} from 'rollup-plugin-terser';
 import resolve from '@rollup/plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
+import commonjs from '@rollup/plugin-commonjs';
 
 /**
  * @external RollupConfig
@@ -22,6 +22,7 @@ function getRollupObject ({minifying, format = 'umd'} = {}) {
     input: `src/${srcFile}.js`,
     output: {
       format,
+      exports: 'default',
       sourcemap: minifying,
       file: `dist/index-${format}${minifying ? '.min' : ''}.js`,
       banner: isCJS ? 'global.self = global;' : '',
@@ -45,7 +46,7 @@ function getRollupObject ({minifying, format = 'umd'} = {}) {
 // For debugging
 // getRollupObject; // eslint-disable-line no-unused-expressions
 
-// eslint-disable-next-line import/no-anonymous-default-export
+// eslint-disable-next-line import/no-anonymous-default-export -- Rollup config
 export default [
   // The first four are for those not using our HTML (though
   //    not currently recommended)

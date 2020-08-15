@@ -57,6 +57,7 @@ function retrievalJSON (response) {
 *   This value will serve as the `postJSON` return result.
 */
 
+/* eslint-disable max-len */
 /**
 * @typedef {PlainObject} PostJSONOptions
 * @property {JSON} [body]
@@ -66,9 +67,9 @@ function retrievalJSON (response) {
 * @property {RetrievalHandler} [retrieval=retrievalJSON]
 * @property {"omit"|"same-origin"|"include"} [credentials="same-origin"]
 *   "omit" is `fetch` default
-* @property {Headers} [headers={"Accept": "application/json",
-"Content-Type": "application/json"}]
+* @property {Headers} [headers={"Accept": "application/json","Content-Type": "application/json"}]
 */
+/* eslint-enable max-len */
 
 /**
  *

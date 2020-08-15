@@ -1,9 +1,11 @@
 global.self = global;
 'use strict';
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+var crossFetch = require('cross-fetch');
 
-var crossFetch = _interopDefault(require('cross-fetch'));
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var crossFetch__default = /*#__PURE__*/_interopDefaultLegacy(crossFetch);
 
 /* eslint-env browser */
 /* eslint-disable promise/prefer-await-to-then,
@@ -64,6 +66,7 @@ function retrievalJSON (response) {
 *   This value will serve as the `postJSON` return result.
 */
 
+/* eslint-disable max-len */
 /**
 * @typedef {PlainObject} PostJSONOptions
 * @property {JSON} [body]
@@ -73,9 +76,9 @@ function retrievalJSON (response) {
 * @property {RetrievalHandler} [retrieval=retrievalJSON]
 * @property {"omit"|"same-origin"|"include"} [credentials="same-origin"]
 *   "omit" is `fetch` default
-* @property {Headers} [headers={"Accept": "application/json",
-"Content-Type": "application/json"}]
+* @property {Headers} [headers={"Accept": "application/json","Content-Type": "application/json"}]
 */
+/* eslint-enable max-len */
 
 /**
  *
@@ -132,6 +135,6 @@ postJSON.status = statusOK;
 
 /* eslint-env node */
 
-postJSON.fetch = crossFetch;
+postJSON.fetch = crossFetch__default['default'];
 
 module.exports = postJSON;

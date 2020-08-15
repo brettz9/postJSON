@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global = global || self, global.postJSON = factory());
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.postJSON = factory());
 }(this, (function () { 'use strict';
 
   function _typeof(obj) {
@@ -83,6 +83,8 @@
   *   This value will serve as the `postJSON` return result.
   */
 
+  /* eslint-disable max-len */
+
   /**
   * @typedef {PlainObject} PostJSONOptions
   * @property {JSON} [body]
@@ -92,9 +94,10 @@
   * @property {RetrievalHandler} [retrieval=retrievalJSON]
   * @property {"omit"|"same-origin"|"include"} [credentials="same-origin"]
   *   "omit" is `fetch` default
-  * @property {Headers} [headers={"Accept": "application/json",
-  "Content-Type": "application/json"}]
+  * @property {Headers} [headers={"Accept": "application/json","Content-Type": "application/json"}]
   */
+
+  /* eslint-enable max-len */
 
   /**
    *
