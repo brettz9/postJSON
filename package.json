@@ -59,7 +59,7 @@
     "mocha": "^10.2.0",
     "node-static": "^0.7.11",
     "nyc": "^15.1.0",
-    "open-cli": "^6.0.1",
+    "open-cli": "^7.1.0",
     "rollup": "2.25.0",
     "rollup-plugin-terser": "^7.0.0",
     "typescript": "^3.9.7"
