@@ -2,7 +2,7 @@
 
 ## 0.8.0
 
-- feat: native ESM
+- feat(BREAKING): native ESM and file path change
 - chore: linting
 
 ## 0.7.0
