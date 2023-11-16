@@ -3,7 +3,6 @@
 module.exports = {
   extends: ['ash-nazg/sauron-node-overrides'],
   parserOptions: {
-    sourceType: 'module',
     ecmaVersion: 2022
   },
   plugins: [],
