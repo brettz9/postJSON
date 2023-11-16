@@ -1,9 +1,10 @@
 'use strict';
 
 module.exports = {
-  extends: ['ash-nazg/sauron-node'],
+  extends: ['ash-nazg/sauron-node-overrides'],
   parserOptions: {
-    sourceType: 'module'
+    sourceType: 'module',
+    ecmaVersion: 2022
   },
   plugins: [],
   env: {
@@ -32,7 +33,7 @@ module.exports = {
       }
     },
     {
-      files: '*.md',
+      files: '*.md/*.js',
       globals: {
         postJSON: true,
         url: true,

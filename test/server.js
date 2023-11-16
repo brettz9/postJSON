@@ -1,8 +1,6 @@
 /* eslint-env node */
-/* globals require */
-/* eslint-disable import/unambiguous, import/no-commonjs */
 
-const http = require('http');
+import http from 'http';
 
 http.createServer(function (req, res) {
   if (req.url === '/internal-error') {
@@ -33,3 +31,6 @@ http.createServer(function (req, res) {
   }
   res.end('Unrecognized path');
 }).listen(8090, '127.0.0.1');
+
+// eslint-disable-next-line no-console -- CLI
+console.log('Listening at 127.0.0.1:8090');

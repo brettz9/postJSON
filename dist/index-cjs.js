@@ -3,10 +3,6 @@ global.self = global;
 
 var crossFetch = require('cross-fetch');
 
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var crossFetch__default = /*#__PURE__*/_interopDefaultLegacy(crossFetch);
-
 /* eslint-env browser */
 /* eslint-disable promise/prefer-await-to-then,
     promise/no-callback-in-promise */
@@ -51,24 +47,28 @@ function retrievalJSON (response) {
 */
 
 /**
+ * @typedef {any} AnyValue
+ */
+
+/**
 * @callback PostJSONErrback
 * @param {Error} Any error caught during `fetch`, {@link StatusHandler},
 *   {@link RetrievalHandler}, or, if present, {@link PostJSONCallback}.
-* @returns {any} Its return will serve as the return of `postJSON` in the
+* @returns {AnyValue} Its return will serve as the return of `postJSON` in the
 *   event of it catching an error.
 */
 
 /**
 * @callback PostJSONCallback
-* @param {any} result The result of `postJSON`'s {@link RetrievalHandler} (by
-*   default {@link retrievalJSON})
+* @param {AnyValue} result The result of `postJSON`'s {@link RetrievalHandler}
+*   (by default {@link retrievalJSON})
 * @returns {any|Promise<any>} Any promise will feed into `errBack` if present.
 *   This value will serve as the `postJSON` return result.
 */
 
-/* eslint-disable max-len */
+/* eslint-disable @stylistic/max-len */
 /**
-* @typedef {PlainObject} PostJSONOptions
+* @typedef {object} PostJSONOptions
 * @property {JSON} [body]
 * @property {PostJSONCallback} [callback]
 * @property {PostJSONErrback} [errBack]
@@ -78,7 +78,7 @@ function retrievalJSON (response) {
 *   "omit" is `fetch` default
 * @property {Headers} [headers={"Accept": "application/json","Content-Type": "application/json"}]
 */
-/* eslint-enable max-len */
+/* eslint-enable @stylistic/max-len */
 
 /**
  *
@@ -118,8 +118,8 @@ function postJSON (url, bodyObject, cb, errBack) {
     dataObject.body = JSON.stringify(bodyObject);
   }
   dataObject.credentials = credentials;
-  // istanbul ignore next
-  let ret = (typeof fetch !== 'undefined' ? fetch : postJSON.fetch)(
+  /* c8 ignore next */
+  let ret = (typeof window !== 'undefined' ? fetch : postJSON.fetch)(
     url, dataObject
   ).then(statusCb).then(retrievalCb);
   if (cb) {
@@ -135,6 +135,6 @@ postJSON.status = statusOK;
 
 /* eslint-env node */
 
-postJSON.fetch = crossFetch__default['default'];
+postJSON.fetch = crossFetch;
 
 module.exports = postJSON;

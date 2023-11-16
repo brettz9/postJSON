@@ -1,5 +1,10 @@
 # CHANGES for postJSON
 
+## 0.8.0
+
+- feat: native ESM
+- chore: linting
+
 ## 0.7.0
 
 - Build: Use "json" extension for Babel RC

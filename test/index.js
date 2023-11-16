@@ -3,7 +3,7 @@ describe('postJSON', function () {
     'Can post JSON and receive a that JSON back within ' +
       'a larger JSON object', async function () {
       const json = await postJSON(
-        'http://localhost:8090/',
+        'http://127.0.0.1:8090/',
         {
           test: 1
         }
@@ -18,7 +18,7 @@ describe('postJSON', function () {
     'Can post JSON and receive a that JSON back within ' +
       'a larger JSON object (object signature)', async function () {
       const json = await postJSON({
-        url: 'http://localhost:8090/',
+        url: 'http://127.0.0.1:8090/',
         body: {
           test: 1
         },
@@ -35,7 +35,7 @@ describe('postJSON', function () {
       'a larger JSON object (object signature with separate body)',
     async function () {
       const json = await postJSON({
-        url: 'http://localhost:8090/'
+        url: 'http://127.0.0.1:8090/'
       }, {
         test: 1
       });
@@ -50,7 +50,7 @@ describe('postJSON', function () {
       'a larger JSON object (and with a callback)', async function () {
       let callbackCalled = false;
       const json = await postJSON({
-        url: 'http://localhost:8090/',
+        url: 'http://127.0.0.1:8090/',
         body: {
           test: 1
         },
@@ -72,7 +72,7 @@ describe('postJSON', function () {
     let err;
     try {
       await postJSON({
-        url: 'http://localhost:8090/bad-path',
+        url: 'http://127.0.0.1:8090/bad-path',
         credentials: 'omit'
       });
     } catch (error) {
@@ -85,7 +85,7 @@ describe('postJSON', function () {
     let err;
     try {
       await postJSON({
-        url: 'http://localhost:8090/bad-path',
+        url: 'http://127.0.0.1:8090/bad-path',
         body: {
           test: 1
         },
@@ -103,7 +103,7 @@ describe('postJSON', function () {
     let errbackCalled = false;
     try {
       await postJSON({
-        url: 'http://localhost:8090/bad-path',
+        url: 'http://127.0.0.1:8090/bad-path',
         body: {
           test: 1
         },
@@ -126,7 +126,7 @@ describe('postJSON', function () {
     let err;
     try {
       await postJSON({
-        url: 'http://localhost:8090/internal-error',
+        url: 'http://127.0.0.1:8090/internal-error',
         body: {
           test: 1
         },

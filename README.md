@@ -17,15 +17,12 @@ JSON via HTTP POST.
 # API
 
 ```js
-(async () => {
 const json = await postJSON(url, bodyObject, callback, errBack);
-})();
 ```
 
 ...or...
 
 ```js
-(async () => {
 const json = await postJSON({
   url, // Only required argument
   body: bodyObject, // JSON object
@@ -38,7 +35,6 @@ const json = await postJSON({
   status: statusCallback, // See below
   retrieval: retrievalCallback // See below
 });
-})();
 ```
 
 Only the `url` argument is required.
