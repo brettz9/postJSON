@@ -3,9 +3,8 @@ global.self = global;
 
 var crossFetch = require('cross-fetch');
 
-/* eslint-env browser */
 /* eslint-disable promise/prefer-await-to-then,
-    promise/no-callback-in-promise */
+    promise/no-callback-in-promise -- Convenient */
 
 /**
  * @callback StatusHandler
@@ -66,7 +65,7 @@ function retrievalJSON (response) {
 *   This value will serve as the `postJSON` return result.
 */
 
-/* eslint-disable @stylistic/max-len */
+/* eslint-disable @stylistic/max-len -- Long */
 /**
 * @typedef {object} PostJSONOptions
 * @property {JSON} [body]
@@ -78,7 +77,7 @@ function retrievalJSON (response) {
 *   "omit" is `fetch` default
 * @property {Headers} [headers={"Accept": "application/json","Content-Type": "application/json"}]
 */
-/* eslint-enable @stylistic/max-len */
+/* eslint-enable @stylistic/max-len -- Long */
 
 /**
  *
@@ -132,8 +131,6 @@ function postJSON (url, bodyObject, cb, errBack) {
 }
 postJSON.retrieval = retrievalJSON;
 postJSON.status = statusOK;
-
-/* eslint-env node */
 
 postJSON.fetch = crossFetch;
 

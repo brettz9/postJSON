@@ -51,10 +51,7 @@ export default [
   },
   {
     rules: {
-      indent: ['error', 2, {outerIIFEBody: 0}],
-
-      // Disable for now
-      '@eslint-community/eslint-comments/require-description': 0
+      indent: ['error', 2, {outerIIFEBody: 0}]
     }
   }
 ];

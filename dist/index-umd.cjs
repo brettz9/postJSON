@@ -4,9 +4,8 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.postJSON = factory());
 })(this, (function () { 'use strict';
 
-  /* eslint-env browser */
   /* eslint-disable promise/prefer-await-to-then,
-      promise/no-callback-in-promise */
+      promise/no-callback-in-promise -- Convenient */
 
   /**
    * @callback StatusHandler
@@ -67,7 +66,7 @@
   *   This value will serve as the `postJSON` return result.
   */
 
-  /* eslint-disable @stylistic/max-len */
+  /* eslint-disable @stylistic/max-len -- Long */
   /**
   * @typedef {object} PostJSONOptions
   * @property {JSON} [body]
@@ -79,7 +78,7 @@
   *   "omit" is `fetch` default
   * @property {Headers} [headers={"Accept": "application/json","Content-Type": "application/json"}]
   */
-  /* eslint-enable @stylistic/max-len */
+  /* eslint-enable @stylistic/max-len -- Long */
 
   /**
    *

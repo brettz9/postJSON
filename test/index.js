@@ -78,7 +78,7 @@ describe('postJSON', function () {
     } catch (error) {
       err = error;
     }
-    // eslint-disable-next-line no-restricted-syntax
+    // eslint-disable-next-line no-restricted-syntax -- Just testing
     assert(err instanceof Error);
   });
   it('rejects with bad server path', async function () {
@@ -94,7 +94,7 @@ describe('postJSON', function () {
     } catch (error) {
       err = error;
     }
-    // eslint-disable-next-line no-restricted-syntax
+    // eslint-disable-next-line no-restricted-syntax -- Just testing
     assert(err instanceof Error);
   });
 
@@ -117,7 +117,7 @@ describe('postJSON', function () {
       err = error;
     }
     assert(errbackCalled);
-    // eslint-disable-next-line no-restricted-syntax
+    // eslint-disable-next-line no-restricted-syntax -- Just testing
     assert(err instanceof Error);
   });
 
@@ -135,7 +135,7 @@ describe('postJSON', function () {
     } catch (error) {
       err = error;
     }
-    // eslint-disable-next-line no-restricted-syntax
+    // eslint-disable-next-line no-restricted-syntax -- Just testing
     assert(err instanceof Error);
   });
 });
