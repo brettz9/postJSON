@@ -1,13 +1,3 @@
-function _typeof(o) {
-  "@babel/helpers - typeof";
-
-  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
-    return typeof o;
-  } : function (o) {
-    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
-  }, _typeof(o);
-}
-
 /* eslint-env browser */
 /* eslint-disable promise/prefer-await-to-then,
     promise/no-callback-in-promise */
@@ -94,17 +84,17 @@ function retrievalJSON(response) {
  * @returns {Promise<any>}
  */
 function postJSON(url, bodyObject, cb, errBack) {
-  var dataObject = {
+  const dataObject = {
     method: 'post',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json'
     }
   };
-  var credentials = 'same-origin',
+  let credentials = 'same-origin',
     statusCb = statusOK,
     retrievalCb = retrievalJSON;
-  if (url && _typeof(url) === 'object') {
+  if (url && typeof url === 'object') {
     bodyObject = url.body || bodyObject;
     cb = url.callback || cb;
     errBack = url.errBack || errBack;
@@ -114,20 +104,21 @@ function postJSON(url, bodyObject, cb, errBack) {
     retrievalCb = url.retrieval || retrievalJSON;
     credentials = url.credentials || credentials;
     dataObject.headers = Object.assign(dataObject.headers, url.headers);
-    var _url = url;
-    url = _url.url;
+    ({
+      url
+    } = url);
   }
   if (bodyObject) {
     dataObject.body = JSON.stringify(bodyObject);
   }
   dataObject.credentials = credentials;
   /* c8 ignore next */
-  var ret = (typeof window !== 'undefined' ? fetch : postJSON.fetch)(url, dataObject).then(statusCb).then(retrievalCb);
+  let ret = (typeof window !== 'undefined' ? fetch : postJSON.fetch)(url, dataObject).then(statusCb).then(retrievalCb);
   if (cb) {
     ret = ret.then(cb);
   }
   if (errBack) {
-    ret = ret["catch"](errBack);
+    ret = ret.catch(errBack);
   }
   return ret;
 }

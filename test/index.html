@@ -7,7 +7,6 @@
 
     <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
     <script src="../node_modules/mocha/mocha.js"></script>
-    <script src="../node_modules/chai/chai.js"></script>
   </head>
   <body>
     <div style="border: 2px solid black;" id="results"></div>
@@ -17,6 +16,7 @@
     <script type="module">
     // import '../node_modules/regenerator-runtime/runtime.js';
     import postJSON from '../dist/index-es.js';
+    import * as chai from '../node_modules/chai/chai.js';
 
     mocha.setup('bdd');
     window.assert = chai.assert;
