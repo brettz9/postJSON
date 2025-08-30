@@ -1,5 +1,9 @@
 # CHANGES for postJSON
 
+## ?
+
+- chore: update cross-fetch and devDeps.
+
 ## 0.8.0
 
 - feat(BREAKING): native ESM and file path change

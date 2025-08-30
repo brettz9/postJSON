@@ -117,7 +117,8 @@ function postJSON (url, bodyObject, cb, errBack) {
     dataObject.body = JSON.stringify(bodyObject);
   }
   dataObject.credentials = credentials;
-  /* c8 ignore next */
+  /* c8 ignore next 2 */
+  // eslint-disable-next-line unicorn/prefer-global-this -- Ok
   let ret = (typeof window !== 'undefined' ? fetch : postJSON.fetch)(
     url, dataObject
   ).then(statusCb).then(retrievalCb);
