@@ -3,3 +3,4 @@ lgtm.yml
 rollup.config.js
 .nyc_output
 coverage
+*.d.ts.map

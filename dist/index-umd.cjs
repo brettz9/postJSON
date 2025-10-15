@@ -8,6 +8,15 @@
       promise/no-callback-in-promise -- Convenient */
 
   /**
+   * @typedef {null|boolean|number|string} JSONPrimitives
+   */
+
+  /**
+   * @typedef {JSONPrimitives[]|
+   *   Record<string, JSONPrimitives|JSONPrimitives[]>} JSON
+   */
+
+  /**
    * @callback StatusHandler
    * @param {Response} response
    * @returns {Promise<Response>}
@@ -28,14 +37,11 @@
   /**
    * @callback RetrievalHandler
    * @param {Response} response
-   * @returns {any|Promise<any>} The return will be what is returned by
+   * @returns {JSON|Promise<JSON>} The return will be what is returned by
    *  `postJSON` unless it also has a {@link PostJSONCallback} callback.
    */
   /**
-   * @function retrievalJSON
-   * @param {Response} response
    * @type {RetrievalHandler}
-   * @returns {JSON}
    */
   function retrievalJSON(response) {
     return response.json();
@@ -43,12 +49,14 @@
 
   /**
    * The keys are header names and the values their values.
-   * @typedef {PlainObject<string, string>} Headers
+   * @typedef {Record<string, string>} Headers
   */
 
+  /* eslint-disable jsdoc/reject-any-type -- Genuinely arbitrary */
   /**
    * @typedef {any} AnyValue
    */
+  /* eslint-enable jsdoc/reject-any-type -- Genuinely arbitrary */
 
   /**
   * @callback PostJSONErrback
@@ -62,7 +70,7 @@
   * @callback PostJSONCallback
   * @param {AnyValue} result The result of `postJSON`'s {@link RetrievalHandler}
   *   (by default {@link retrievalJSON})
-  * @returns {any|Promise<any>} Any promise will feed into `errBack` if present.
+  * @returns {JSON|Promise<JSON>} Any promise will feed into `errBack` if present.
   *   This value will serve as the `postJSON` return result.
   */
 
@@ -70,6 +78,7 @@
   /**
   * @typedef {object} PostJSONOptions
   * @property {JSON} [body]
+  * @property {string} [url]
   * @property {PostJSONCallback} [callback]
   * @property {PostJSONErrback} [errBack]
   * @property {StatusHandler} [status=statusOK]
@@ -86,9 +95,10 @@
    * @param {JSON} [bodyObject] Will be overridden by `url.body` if present
    * @param {PostJSONCallback} [cb]
    * @param {PostJSONErrback} [errBack]
-   * @returns {Promise<any>}
+   * @returns {Promise<AnyValue>}
    */
   function postJSON(url, bodyObject, cb, errBack) {
+    /** @type {RequestInit} */
     const dataObject = {
       method: 'post',
       headers: {
@@ -96,8 +106,9 @@
         'Content-Type': 'application/json'
       }
     };
-    let credentials = 'same-origin',
-      statusCb = statusOK,
+    /** @type {RequestCredentials} */
+    let credentials = 'same-origin';
+    let statusCb = statusOK,
       retrievalCb = retrievalJSON;
     if (url && typeof url === 'object') {
       bodyObject = url.body || bodyObject;
@@ -108,7 +119,7 @@
       statusCb = url.status || statusOK;
       retrievalCb = url.retrieval || retrievalJSON;
       credentials = url.credentials || credentials;
-      dataObject.headers = Object.assign(dataObject.headers, url.headers);
+      dataObject.headers = Object.assign(/** @type {HeadersInit} */dataObject.headers, url.headers);
       ({
         url
       } = url);
@@ -117,7 +128,8 @@
       dataObject.body = JSON.stringify(bodyObject);
     }
     dataObject.credentials = credentials;
-    /* c8 ignore next 2 */
+    /* c8 ignore next 3 */
+    // @ts-expect-error Ok
     // eslint-disable-next-line unicorn/prefer-global-this -- Ok
     let ret = (typeof window !== 'undefined' ? fetch : postJSON.fetch)(url, dataObject).then(statusCb).then(retrievalCb);
     if (cb) {

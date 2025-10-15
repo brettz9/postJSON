@@ -1,7 +1,8 @@
 # CHANGES for postJSON
 
-## ?
+## 0.9.0
 
+- feat(BREAKING): add TypeScript
 - chore: update cross-fetch and devDeps.
 
 ## 0.8.0

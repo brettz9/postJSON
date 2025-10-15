@@ -1,12 +1,13 @@
 {
   "name": "simple-post-json",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "author": {
     "name": "Brett Zamir"
   },
   "type": "module",
   "main": "./dist/index-cjs.cjs",
   "exports": {
+    "types": "./dist/index.d.ts",
     "import": "./dist/index-es.js",
     "require": "./dist/index-cjs.cjs"
   },
@@ -16,12 +17,13 @@
   "contributors": [],
   "description": "Simple function module for Node or the browser to send (and retrieve) JSON via HTTP POST.",
   "scripts": {
+    "tsc": "tsc",
     "eslint": "eslint .",
     "lint": "npm run eslint",
-    "rollup": "rollup -c",
+    "build": "rollup -c && tsc -p tsconfig-prod.json",
     "start-json-server": "node test/server",
     "start": "echo \"Open file to http://127.0.0.1:8008/test/\" && static -p 8008 | npm run start-json-server",
-    "browser-test": "npm run eslint && npm run rollup && echo \"opening http://127.0.0.1:8008/test/\" && static -p 8008 | npm run start-json-server | open-cli http://127.0.0.1:8008/test/",
+    "browser-test": "npm run eslint && npm run build && echo \"opening http://127.0.0.1:8008/test/\" && static -p 8008 | npm run start-json-server | open-cli http://127.0.0.1:8008/test/",
     "mocha": "mocha -r chai/register-assert.js -r './test/node-env.js' './test/index.js'",
     "c8": "c8 npm run mocha",
     "test": "npm run start-json-server | { sleep 1; npm run c8 ; kill $(ps aux | grep '[n]ode test/server' | awk '{print $2}') ; }"
@@ -36,21 +38,23 @@
     "encoding": "^0.1.13"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.3",
+    "@babel/core": "^7.28.4",
     "@babel/preset-env": "^7.28.3",
     "@brettz9/node-static": "^0.1.1",
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-commonjs": "^28.0.6",
-    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-babel": "^6.1.0",
+    "@rollup/plugin-commonjs": "^28.0.7",
+    "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-terser": "^0.4.4",
+    "@types/chai": "^5.2.2",
+    "@types/mocha": "^10.0.10",
     "c8": "^10.1.3",
-    "chai": "^6.0.1",
-    "eslint": "^9.34.0",
-    "eslint-config-ash-nazg": "^39.0.1",
-    "mocha": "^11.7.1",
+    "chai": "^6.2.0",
+    "eslint": "^9.37.0",
+    "eslint-config-ash-nazg": "^39.5.0",
+    "mocha": "^11.7.4",
     "open-cli": "^8.0.0",
-    "rollup": "4.49.0",
-    "typescript": "^5.9.2"
+    "rollup": "4.52.4",
+    "typescript": "^5.9.3"
   },
   "homepage": "https://github.com/brettz9/postJSON",
   "engines": {

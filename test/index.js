@@ -1,3 +1,6 @@
+// eslint-disable-next-line no-shadow -- To fix
+import {assert} from 'chai';
+
 describe('postJSON', function () {
   it(
     'Can post JSON and receive a that JSON back within ' +

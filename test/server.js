@@ -20,7 +20,7 @@ http.createServer(function (req, res) {
       try {
         body = JSON.parse(body);
       } catch (err) {
-        res.end(JSON.stringify({error: err.toString()}));
+        res.end(JSON.stringify({error: /** @type {Error} */ (err).toString()}));
         return;
       }
       res.end(JSON.stringify({reply: body}));
