@@ -1,5 +1,9 @@
 # CHANGES for postJSON
 
+## 0.9.2
+
+- fix(typescript): update build files
+
 ## 0.9.1
 
 - fix(typescript): JSON type

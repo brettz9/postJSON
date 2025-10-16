@@ -1,6 +1,10 @@
 export default postJSON;
-export type JSONPrimitives = null | boolean | number | string;
-export type JSON = JSONPrimitives[] | Record<string, JSONPrimitives | JSONPrimitives[]>;
+export type JSONPrimitive = null | boolean | number | string;
+export type JSONObject = {
+    [member: string]: JSON;
+};
+export type JSONArray = Array<JSON>;
+export type JSON = JSONPrimitive | JSONObject | JSONArray;
 export type StatusHandler = (response: Response) => Promise<Response>;
 export type RetrievalHandler = (response: Response) => JSON | Promise<JSON>;
 /**

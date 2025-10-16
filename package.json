@@ -1,6 +1,6 @@
 {
   "name": "simple-post-json",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "author": {
     "name": "Brett Zamir"
   },
@@ -17,6 +17,7 @@
   "contributors": [],
   "description": "Simple function module for Node or the browser to send (and retrieve) JSON via HTTP POST.",
   "scripts": {
+    "prepublishOnly": "pnpm build",
     "tsc": "tsc",
     "eslint": "eslint .",
     "lint": "npm run eslint",
