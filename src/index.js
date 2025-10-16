@@ -2,12 +2,16 @@
     promise/no-callback-in-promise -- Convenient */
 
 /**
- * @typedef {null|boolean|number|string} JSONPrimitives
+ * @typedef {null|boolean|number|string} JSONPrimitive
  */
-
 /**
- * @typedef {JSONPrimitives[]|
- *   Record<string, JSONPrimitives|JSONPrimitives[]>} JSON
+ * @typedef {{[member: string]: JSON}} JSONObject
+ */
+/**
+ * @typedef {Array<JSON>} JSONArray
+ */
+/**
+ * @typedef {JSONPrimitive | JSONObject | JSONArray} JSON
  */
 
 /**

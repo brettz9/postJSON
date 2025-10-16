@@ -1,5 +1,9 @@
 # CHANGES for postJSON
 
+## 0.9.1
+
+- fix(typescript): JSON type
+
 ## 0.9.0
 
 - feat(BREAKING): add TypeScript
