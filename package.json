@@ -54,7 +54,7 @@
     "eslint-config-ash-nazg": "^39.5.0",
     "mocha": "^11.7.4",
     "open-cli": "^8.0.0",
-    "rollup": "4.52.4",
+    "rollup": "4.59.0",
     "typescript": "^5.9.3"
   },
   "homepage": "https://github.com/brettz9/postJSON",
